@@ -1,0 +1,23 @@
+diff --git a/crates/ui-egui/src/updates_ui.rs b/crates/ui-egui/src/updates_ui.rs
+index ce8f53a..8ff3c4c 100644
+--- a/crates/ui-egui/src/updates_ui.rs
++++ b/crates/ui-egui/src/updates_ui.rs
+@@ -32,15 +32,13 @@ impl Default for Runtime {
+ impl CadApp {
+     /// Turn on the startup update check (the desktop host does; tests and the web build do not).
+     pub fn enable_update_check(&mut self) {
+-        self.updates_rt.enabled = true;
++        // The AppImage is updated by its own package manager; no check is ever asked for.
+     }
+ }
+ 
+ /// Help ▸ Check for Updates…: check now, and show the result when there is nothing newer.
+-pub fn check_now(app: &mut CadApp) {
+-    app.updates_rt.check_requested = true;
+-    app.updates_rt.result_open = true;
+-    app.updates_rt.result_echoed = false;
++pub fn check_now(_app: &mut CadApp) {
++    // Help > Check for Updates would offer to replace this build with an upstream release.
+ }
+ 
+ /// Start the checks and collect the answers.
